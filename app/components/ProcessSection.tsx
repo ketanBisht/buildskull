@@ -9,28 +9,28 @@ const steps = [
     title: 'Discovery',
     desc: 'We dive deep into your business, goals, and target audience to build a solid strategic foundation.',
     icon: Search,
-    color: 'from-blue-500 to-blue-600',
+    color: 'from-[#2563eb] to-[#7c3aed]',
     tag: 'STRATEGY',
   },
   {
     title: 'Design',
     desc: 'Our design team crafts a premium, high-converting UI that perfectly represents your brand identity.',
     icon: PenTool,
-    color: 'from-purple-500 to-purple-600',
+    color: 'from-[#7c3aed] to-[#db2777]',
     tag: 'AESTHETICS',
   },
   {
     title: 'Development',
     desc: 'We build your site using Next.js 16 and React 19 for industry-leading speed and performance.',
     icon: Code2,
-    color: 'from-cyan-500 to-cyan-600',
+    color: 'from-[#db2777] to-[#ea580c]',
     tag: 'ENGINEERING',
   },
   {
     title: 'Launch',
     desc: 'After rigorous testing, we deploy your site to the edge and monitor its performance for growth.',
     icon: Rocket,
-    color: 'from-orange-500 to-orange-600',
+    color: 'from-[#ea580c] to-[#2563eb]',
     tag: 'GROWTH',
   },
 ];
@@ -43,19 +43,19 @@ export default function ProcessSection() {
   });
 
   return (
-    <section id="process" ref={ref} className="py-32 px-6 bg-[#fcfcfc] relative overflow-hidden">
+    <section id="process" ref={ref} className="py-32 px-6 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 text-[11px] font-black uppercase tracking-widest text-black/40 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 text-[11px] font-black uppercase tracking-widest text-foreground/40 mb-6">
               Our Workflow
             </div>
-            <h2 className="text-5xl md:text-7xl font-[1000] tracking-tight text-black mb-0">
+            <h2 className="text-5xl md:text-7xl font-[1000] tracking-tight text-foreground mb-0">
               Four steps to <br />
               <span className="gradient-text">digital dominance.</span>
             </h2>
           </div>
-          <p className="text-xl text-black/60 font-medium max-w-sm mb-2">
+          <p className="text-xl text-foreground/60 font-medium max-w-sm mb-2">
             A streamlined process designed to deliver exceptional results without the typical agency friction.
           </p>
         </div>
@@ -70,11 +70,11 @@ export default function ProcessSection() {
               transition={{ delay: i * 0.1, duration: 0.8, ease: "easeOut" }}
               className="group relative"
             >
-              <div className="absolute -top-6 left-10 text-[120px] font-black text-black/[0.03] select-none group-hover:text-primary/10 transition-colors duration-500">
+              <div className="absolute -top-6 left-10 text-[120px] font-black text-foreground/[0.03] select-none group-hover:text-primary/10 transition-colors duration-500">
                 {i + 1}
               </div>
               
-              <div className="relative z-10 p-10 rounded-[40px] bg-white border border-black/[0.04] shadow-apple hover:shadow-apple-lg transition-all duration-500 h-full flex flex-col">
+              <div className="relative z-10 p-10 rounded-[40px] bg-card border border-border shadow-sm hover:shadow-lg transition-all duration-500 h-full flex flex-col">
                 <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white shadow-xl mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500`}>
                   <s.icon size={28} />
                 </div>
@@ -83,11 +83,11 @@ export default function ProcessSection() {
                   {s.tag}
                 </span>
                 
-                <h3 className="text-2xl font-black text-black mb-4">
+                <h3 className="text-2xl font-black text-foreground mb-4">
                   {s.title}
                 </h3>
                 
-                <p className="text-black/60 text-base font-medium leading-relaxed mb-8 flex-1">
+                <p className="text-foreground/60 text-base font-medium leading-relaxed mb-8 flex-1">
                   {s.desc}
                 </p>
 

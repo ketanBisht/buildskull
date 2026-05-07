@@ -36,7 +36,7 @@ export default function WhyUsSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="py-32 px-6 bg-white relative overflow-hidden">
+    <section ref={ref} className="py-32 px-6 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -44,14 +44,14 @@ export default function WhyUsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-24"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 text-[11px] font-black uppercase tracking-widest text-black/40 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 text-[11px] font-black uppercase tracking-widest text-foreground/40 mb-6">
             The BuildSkull Edge
           </div>
-          <h2 className="text-5xl md:text-7xl font-[1000] tracking-tight text-black mb-8">
+          <h2 className="text-5xl md:text-7xl font-[1000] tracking-tight text-foreground mb-8">
             Why settle for <br />
             <span className="gradient-text">mediocrity?</span>
           </h2>
-          <p className="text-xl text-black/60 max-w-2xl mx-auto font-medium">
+          <p className="text-xl text-foreground/60 max-w-2xl mx-auto font-medium">
             We&apos;ve redefined the agency experience to be faster, cleaner, and significantly more effective.
           </p>
         </motion.div>
@@ -71,26 +71,26 @@ export default function WhyUsSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="group relative rounded-3xl bg-[#fcfcfc] border border-black/[0.04] p-8 shadow-apple hover:shadow-apple-lg transition-all duration-500"
+                className="group relative rounded-3xl bg-card border border-border p-8 shadow-apple hover:shadow-apple-lg transition-all duration-500"
               >
                 <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 rounded-2xl bg-white border border-black/[0.03] shadow-sm flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-card border border-border shadow-sm flex items-center justify-center text-secondary flex-shrink-0 group-hover:scale-110 transition-transform">
                     <item.icon size={22} />
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-lg font-black text-black mb-4">{item.title}</h4>
+                    <h4 className="text-lg font-black text-foreground mb-4">{item.title}</h4>
                     <div className="space-y-4">
                       <div className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center mt-1">
-                          <Check size={12} className="text-green-600" />
+                        <div className="w-5 h-5 rounded-full bg-foreground/5 flex items-center justify-center mt-1">
+                          <Check size={12} className="text-secondary" />
                         </div>
-                        <p className="text-sm font-bold text-black/80">{item.us}</p>
+                        <p className="text-sm font-bold text-foreground/80">{item.us}</p>
                       </div>
                       <div className="flex items-start gap-3 opacity-60 grayscale group-hover:grayscale-0 transition-all">
-                        <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center mt-1">
-                          <X size={12} className="text-red-600" />
+                        <div className="w-5 h-5 rounded-full bg-foreground/5 flex items-center justify-center mt-1">
+                          <X size={12} className="text-foreground/20" />
                         </div>
-                        <p className="text-sm font-medium text-black/60 italic">{item.them}</p>
+                        <p className="text-sm font-medium text-foreground/40 italic">{item.them}</p>
                       </div>
                     </div>
                   </div>
@@ -106,10 +106,9 @@ export default function WhyUsSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative lg:pl-12"
           >
-             <div className="rounded-[48px] bg-gradient-to-br from-primary to-secondary p-12 text-white shadow-apple-lg relative overflow-hidden group">
+             <div className="rounded-[48px] bg-black p-12 text-white shadow-apple-lg relative overflow-hidden group">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10 mix-blend-overlay grid-bg" />
-                <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/20 rounded-full blur-3xl animate-blob" />
                 
                 <div className="relative z-10">
                    <h3 className="text-4xl font-black mb-6 leading-tight">

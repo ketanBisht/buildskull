@@ -1,27 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #3b82f6;
-  --color-secondary: #a855f7;
-  --color-accent: #22d3ee;
-  --color-background: #ffffff;
-  --color-foreground: #111827;
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
   
-  --font-sans: var(--font-plus-jakarta), var(--font-inter), ui-sans-serif, system-ui;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia;
+  /* Single premium font — hierarchy through weight & spacing only */
+  --font-sans: var(--font-outfit), 'Helvetica Neue', ui-sans-serif, system-ui;
+  --font-display: var(--font-outfit), ui-sans-serif;
 
   --animation-float: float 6s ease-in-out infinite;
   --animation-shimmer: shimmer 2.5s linear infinite;
   --animation-blob: blob 7s infinite;
-  --animation-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
   }
   @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
   @keyframes blob {
     0% { transform: translate(0px, 0px) scale(1); }
@@ -29,90 +31,142 @@
     66% { transform: translate(-20px, 20px) scale(0.9); }
     100% { transform: translate(0px, 0px) scale(1); }
   }
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.15; }
-  }
+
+  /* Sophisticated shadow system */
+  --shadow-sm: 0 1px 3px rgba(10, 14, 26, 0.08), 0 1px 2px rgba(10, 14, 26, 0.04);
+  --shadow-md: 0 4px 20px -2px rgba(10, 14, 26, 0.08), 0 2px 8px -2px rgba(10, 14, 26, 0.04);
+  --shadow-apple: 0 8px 32px -8px rgba(10, 14, 26, 0.12), 0 2px 8px -2px rgba(10, 14, 26, 0.06);
+  --shadow-apple-lg: 0 20px 60px -12px rgba(10, 14, 26, 0.18), 0 4px 16px -4px rgba(10, 14, 26, 0.08);
+}
+
+/* ─── LIGHT THEME — Warm Ivory × Deep Navy ─── */
+:root {
+  --primary:    #0a0e1a;       /* Deep Navy */
+  --accent:     #c9a96e;       /* Warm Gold */
+  --background: #fdf8f0;       /* Warm Ivory */
+  --foreground: #0a0e1a;       /* Deep Navy */
+  --muted:      #f0e8d8;       /* Parchment */
+  --card:       #fffcf7;       /* Cream White */
+  --border:     rgba(10, 14, 26, 0.08);
+}
+
+/* ─── DARK THEME — Deep Navy × Warm Gold ─── */
+.dark {
+  --primary:    #fdf8f0;       /* Warm Ivory */
+  --accent:     #c9a96e;       /* Warm Gold (same — works on both) */
+  --background: #080b14;       /* Deepest Navy */
+  --foreground: #e8e0d0;       /* Warm Off-White */
+  --muted:      #111827;       /* Dark Navy */
+  --card:       #0f1624;       /* Deep Card */
+  --border:     rgba(201, 169, 110, 0.12);  /* Gold-tinted border */
 }
 
 @layer base {
   * {
-    @apply border-black/5 outline-none;
+    @apply border-[var(--border)] outline-none;
   }
   body {
-    @apply bg-background text-foreground selection:bg-primary/20;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-outfit), 'Helvetica Neue', ui-sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-sans;
-  }
+  /* Pure weight-based hierarchy — no font switching */
+  h1 { @apply font-[800] tracking-[-0.04em]; }
+  h2 { @apply font-[700] tracking-[-0.03em]; }
+  h3 { @apply font-[600] tracking-[-0.02em]; }
+  h4, h5, h6 { @apply font-[600] tracking-tight; }
+  p { @apply font-[400]; }
 }
 
 @layer utilities {
+  /* Glassmorphism — uses card color so it adapts to theme */
   .glass {
-    @apply bg-white/60 backdrop-blur-xl border border-black/[0.03] shadow-[0_8px_32px_0_rgba(0,0,0,0.02)];
+    background: color-mix(in srgb, var(--card) 70%, transparent);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
   }
   .glass-strong {
-    @apply bg-white/90 backdrop-blur-2xl border border-black/[0.05] shadow-[0_12px_48px_0_rgba(0,0,0,0.05)];
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+    backdrop-filter: blur(40px);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-apple);
   }
-  .glass-card {
-    @apply bg-white/40 backdrop-blur-lg border border-black/[0.04] shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:bg-white/60 transition-all duration-300;
+
+  /* Accent emphasis — weight + color only, no font switch */
+  .accent-word {
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.03em;
   }
-  
+
+  /* Refined gradient text — subtle gold shimmer */
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+    background: linear-gradient(135deg, var(--foreground) 0%, var(--accent) 60%, var(--foreground) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  
+
+  /* Label / eyebrow style */
+  .eyebrow {
+    @apply text-[10px] font-semibold uppercase tracking-[0.25em] text-accent;
+  }
+
+  /* Grid dot background */
+  .grid-bg {
+    background-image: radial-gradient(circle at center, var(--accent) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.06;
+  }
+
+  /* Noise texture overlay */
+  .noise::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none opacity-[0.025] mix-blend-overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Shimmer effect for buttons */
   .btn-shimmer {
     @apply relative overflow-hidden;
   }
   .btn-shimmer::after {
     content: '';
-    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent;
-    animation: shimmer 2s infinite;
-  }
-  
-  .grid-bg {
-    background-image: radial-gradient(circle at center, #000000 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.05;
-  }
-  
-  .noise {
-    position: relative;
-  }
-  .noise::before {
-    content: '';
-    @apply absolute inset-0 pointer-events-none opacity-[0.02] mix-blend-overlay;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    position: absolute;
+    top: 0; left: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: shimmer 2.5s ease-in-out infinite;
   }
 
+  /* Gold accent rule */
+  .accent-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  /* Hover underline link style */
   .hover-underline {
     @apply relative;
   }
   .hover-underline::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-px bg-accent transition-all duration-300;
   }
   .hover-underline:hover::after {
     @apply w-full;
   }
 
-  .shadow-apple {
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 2px 10px -2px rgba(0, 0, 0, 0.05);
-  }
-  
-  .shadow-apple-lg {
-    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.15), 0 5px 20px -5px rgba(0, 0, 0, 0.08);
-  }
-
-  .glow-blue {
-    box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.2);
-  }
-  .glow-purple {
-    box-shadow: 0 0 40px -10px rgba(168, 85, 247, 0.2);
-  }
-  
   .animate-float-slow {
     animation: float 8s ease-in-out infinite;
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
   }
 }

@@ -70,8 +70,8 @@ export default function TestimonialsSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="testimonials" ref={ref} className="py-32 px-6 bg-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-black/[0.05] to-transparent" />
+    <section id="testimonials" ref={ref} className="py-32 px-6 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -80,14 +80,14 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-24"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 text-[11px] font-black uppercase tracking-widest text-black/40 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 text-[11px] font-black uppercase tracking-widest text-foreground/40 mb-6">
             Social Proof
           </div>
-          <h2 className="text-5xl md:text-7xl font-[1000] tracking-tight text-black mb-8">
+          <h2 className="text-5xl md:text-7xl font-[1000] tracking-tight text-foreground mb-8">
             Results that speak <br />
             <span className="gradient-text">for themselves.</span>
           </h2>
-          <p className="text-xl text-black/60 max-w-2xl mx-auto font-medium">
+          <p className="text-xl text-foreground/40 max-w-2xl mx-auto font-medium">
             Join 200+ businesses that have accelerated their growth with BuildSkull.
           </p>
         </motion.div>
@@ -100,27 +100,27 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.05, duration: 0.8, ease: "easeOut" }}
-              className="break-inside-avoid relative rounded-[40px] p-10 bg-[#fcfcfc] border border-black/[0.04] shadow-apple hover:shadow-apple-lg transition-all duration-500 group"
+              className="break-inside-avoid relative rounded-[40px] p-10 bg-card border border-border shadow-apple hover:shadow-apple-lg transition-all duration-500 group"
             >
               <div className="absolute top-10 right-10 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Quote size={48} className="text-black" />
+                <Quote size={48} className="text-foreground" />
               </div>
 
               <div className="mb-6">
                 <StarRating count={t.rating} />
               </div>
 
-              <p className="text-lg text-black/70 font-medium leading-relaxed mb-10 italic">
+              <p className="text-lg text-foreground/60 font-medium leading-relaxed mb-10 italic">
                 &quot;{t.text}&quot;
               </p>
 
               <div className="flex items-center gap-4">
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-black shadow-sm ${t.avatarColor}`}>
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-black shadow-sm ${t.avatarColor} dark:bg-foreground/10 dark:text-foreground/80`}>
                   {t.avatar}
                 </div>
                 <div>
-                  <div className="text-base font-black text-black">{t.name}</div>
-                  <div className="text-sm font-bold text-black/50">{t.role}</div>
+                  <div className="text-base font-black text-foreground">{t.name}</div>
+                  <div className="text-sm font-bold text-foreground/40">{t.role}</div>
                 </div>
               </div>
             </motion.div>

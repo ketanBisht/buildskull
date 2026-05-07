@@ -1,26 +1,118 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-primary: #3b82f6;
+  --color-secondary: #a855f7;
+  --color-accent: #22d3ee;
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  
+  --font-sans: var(--font-plus-jakarta), var(--font-inter), ui-sans-serif, system-ui;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animation-float: float 6s ease-in-out infinite;
+  --animation-shimmer: shimmer 2.5s linear infinite;
+  --animation-blob: blob 7s infinite;
+  --animation-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.15; }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-black/5 outline-none;
+  }
+  body {
+    @apply bg-background text-foreground selection:bg-primary/20;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-sans;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/60 backdrop-blur-xl border border-black/[0.03] shadow-[0_8px_32px_0_rgba(0,0,0,0.02)];
+  }
+  .glass-strong {
+    @apply bg-white/90 backdrop-blur-2xl border border-black/[0.05] shadow-[0_12px_48px_0_rgba(0,0,0,0.05)];
+  }
+  .glass-card {
+    @apply bg-white/40 backdrop-blur-lg border border-black/[0.04] shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:bg-white/60 transition-all duration-300;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+  
+  .btn-shimmer {
+    @apply relative overflow-hidden;
+  }
+  .btn-shimmer::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    animation: shimmer 2s infinite;
+  }
+  
+  .grid-bg {
+    background-image: radial-gradient(circle at center, #000000 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.05;
+  }
+  
+  .noise {
+    position: relative;
+  }
+  .noise::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none opacity-[0.02] mix-blend-overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .hover-underline {
+    @apply relative;
+  }
+  .hover-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300;
+  }
+  .hover-underline:hover::after {
+    @apply w-full;
+  }
+
+  .shadow-apple {
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 2px 10px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shadow-apple-lg {
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.15), 0 5px 20px -5px rgba(0, 0, 0, 0.08);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.2);
+  }
+  .glow-purple {
+    box-shadow: 0 0 40px -10px rgba(168, 85, 247, 0.2);
+  }
+  
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
 }

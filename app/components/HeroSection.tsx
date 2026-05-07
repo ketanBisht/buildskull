@@ -248,7 +248,7 @@ export default function HeroSection() {
              <div className="pointer-events-auto flex flex-col items-center gap-8 md:gap-12">
                 <h2 className="text-6xl md:text-[130px] font-[1000] text-foreground tracking-[-0.06em] leading-none">Ready?</h2>
                 <div className="flex flex-col sm:flex-row gap-4 md:gap-8">
-                   <a href="https://wa.me/qr/Z22T2DTNA3RHM1" target="_blank" rel="noopener noreferrer" className="px-10 md:px-16 py-6 md:py-8 rounded-[24px] md:rounded-[28px] bg-primary text-background font-black text-xl md:text-2xl shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-4 md:gap-6">
+                   <a href="https://wa.me/919098339887" target="_blank" rel="noopener noreferrer" className="px-10 md:px-16 py-6 md:py-8 rounded-[24px] md:rounded-[28px] bg-primary text-background font-black text-xl md:text-2xl shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-4 md:gap-6">
                      <Calendar size={28} /> WhatsApp Us
                    </a>
                    <a href="mailto:buildskull.tech@gmail.com" className="px-10 md:px-16 py-6 md:py-8 rounded-[24px] md:rounded-[28px] bg-background text-foreground border border-foreground/10 font-black text-xl md:text-2xl shadow-apple hover:bg-foreground/5 transition-all flex items-center gap-4 md:gap-6">

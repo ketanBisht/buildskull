@@ -55,7 +55,7 @@ export default function CTASection() {
                     <div className="absolute inset-0 bg-gradient-to-r from-secondary to-accent opacity-0 group-hover/btn:opacity-10 transition-opacity duration-500" />
                  </a>
                  <a
-                   href="https://wa.me/qr/Z22T2DTNA3RHM1"
+                   href="https://wa.me/919098339887"
                    target="_blank"
                    rel="noopener noreferrer"
                    className="w-full sm:w-auto px-12 py-6 rounded-[24px] bg-background text-foreground border border-border font-black text-xl shadow-apple hover:bg-foreground/[0.02] transition-all duration-300 flex items-center justify-center gap-3"

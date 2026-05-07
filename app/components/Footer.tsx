@@ -10,7 +10,7 @@ const nav = {
 };
 
 const socials = [
-  { icon: X, href: 'https://wa.me/qr/Z22T2DTNA3RHM1', label: 'WhatsApp', external: true },
+  { icon: X, href: 'https://wa.me/919098339887', label: 'WhatsApp', external: true },
   { icon: Briefcase, href: 'mailto:buildskull.tech@gmail.com', label: 'Email', external: false },
   { icon: CodeXml, href: '#', label: 'GitHub', external: false },
   { icon: Camera, href: '#', label: 'Instagram', external: false },

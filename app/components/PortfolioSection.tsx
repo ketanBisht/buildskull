@@ -6,37 +6,37 @@ import { ArrowUpRight, ExternalLink, Layers } from 'lucide-react';
 
 const projects = [
   {
-    title: 'FitForge Pro',
+    title: 'Iron Paradise Gym',
     cat: 'FITNESS & WELLNESS',
-    badge: 'CONCEPT PROJECT',
-    desc: 'A high-performance landing page for a gym brand — built to drive memberships. Includes animated stats, class scheduling UI, and a trainer showcase.',
-    stack: ['Next.js', 'Framer Motion', 'Tailwind'],
+    badge: 'LIVE DEMO',
+    desc: 'Full gym management platform — member portal, owner dashboard, membership plans & billing. A complete SaaS product built to drive memberships and retain clients.',
+    stack: ['Next.js', 'Prisma', 'TypeScript'],
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&auto=format&fit=crop&q=70',
     color: 'bg-foreground/[0.02]',
     accentClass: 'text-blue-400',
-    demoUrl: '#',
+    demoUrl: 'https://gymproto.vercel.app/',
   },
   {
     title: 'Brewed & Co.',
     cat: 'FOOD & HOSPITALITY',
-    badge: 'CONCEPT PROJECT',
-    desc: 'Premium café brand site with an online menu, table reservation flow, and animated parallax hero. Designed for maximum foot-traffic and order conversions.',
-    stack: ['Next.js', 'GSAP', 'Stripe'],
+    badge: 'LIVE DEMO',
+    desc: 'Premium café & bakery site with a curated menu, live table reservation form, animated marquee, and warm Playfair Display typography. Optimised for foot-traffic conversions.',
+    stack: ['Next.js', 'CSS Tokens', 'TypeScript'],
     image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&auto=format&fit=crop&q=70',
     color: 'bg-foreground/[0.04]',
     accentClass: 'text-amber-400',
-    demoUrl: '#',
+    demoUrl: 'https://protobrew.vercel.app/',
   },
   {
-    title: 'GrowthStudio',
-    cat: 'SAAS / MARKETING',
-    badge: 'CONCEPT PROJECT',
-    desc: 'A conversion-obsessed SaaS landing page with a feature grid, pricing toggle, and testimonial wall. Built with a 99/100 Lighthouse score out of the box.',
-    stack: ['Next.js', 'TypeScript', 'Vercel'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=70',
+    title: 'Glow & Co.',
+    cat: 'BEAUTY & WELLNESS',
+    badge: 'LIVE DEMO',
+    desc: 'Luxury salon & spa landing page with a full services grid, online appointment booking form, client testimonials, and an elegant blush-noir design system.',
+    stack: ['Next.js', 'CSS Tokens', 'TypeScript'],
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=70',
     color: 'bg-foreground/[0.06]',
-    accentClass: 'text-purple-400',
-    demoUrl: '#',
+    accentClass: 'text-pink-400',
+    demoUrl: 'https://protoglow.vercel.app/',
   },
 ];
 
@@ -97,6 +97,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
         <a
           href={project.demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-3 text-base font-bold text-foreground group-hover:text-foreground/70 transition-colors self-start"
         >
           <div className="w-11 h-11 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:border-foreground group-hover:text-background transition-all duration-300">

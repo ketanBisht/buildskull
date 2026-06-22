@@ -2,38 +2,41 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, BarChart3, Globe, Laptop } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, Layers } from 'lucide-react';
 
 const projects = [
   {
-    title: 'FitForge Analytics',
-    cat: 'SAAS DASHBOARD',
-    desc: 'A comprehensive management platform for gym owners. Real-time metrics, member tracking, and automated billing.',
-    stats: { growth: '+240%', users: '12k+' },
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=60',
-    color: 'bg-foreground/[0.03]',
-    accent: 'text-secondary',
-    icon: BarChart3,
+    title: 'FitForge Pro',
+    cat: 'FITNESS & WELLNESS',
+    badge: 'CONCEPT PROJECT',
+    desc: 'A high-performance landing page for a gym brand — built to drive memberships. Includes animated stats, class scheduling UI, and a trainer showcase.',
+    stack: ['Next.js', 'Framer Motion', 'Tailwind'],
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&auto=format&fit=crop&q=70',
+    color: 'bg-foreground/[0.02]',
+    accentClass: 'text-blue-400',
+    demoUrl: '#',
   },
   {
     title: 'Brewed & Co.',
-    cat: 'E-COMMERCE',
-    desc: 'Premium coffee subscription service with a custom booking engine and interactive shop experience.',
-    stats: { revenue: '+180%', orders: '5.2k' },
-    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&auto=format&fit=crop&q=60',
-    color: 'bg-foreground/[0.05]',
-    accent: 'text-accent',
-    icon: Globe,
+    cat: 'FOOD & HOSPITALITY',
+    badge: 'CONCEPT PROJECT',
+    desc: 'Premium café brand site with an online menu, table reservation flow, and animated parallax hero. Designed for maximum foot-traffic and order conversions.',
+    stack: ['Next.js', 'GSAP', 'Stripe'],
+    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&auto=format&fit=crop&q=70',
+    color: 'bg-foreground/[0.04]',
+    accentClass: 'text-amber-400',
+    demoUrl: '#',
   },
   {
     title: 'GrowthStudio',
-    cat: 'MARKETING AGENCY',
-    desc: 'High-performance portfolio for an elite marketing firm, optimized for extreme speed and conversion.',
-    stats: { speed: '99/100', rank: '#1' },
-    image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&auto=format&fit=crop&q=60',
-    color: 'bg-foreground/[0.08]',
-    accent: 'text-primary',
-    icon: Laptop,
+    cat: 'SAAS / MARKETING',
+    badge: 'CONCEPT PROJECT',
+    desc: 'A conversion-obsessed SaaS landing page with a feature grid, pricing toggle, and testimonial wall. Built with a 99/100 Lighthouse score out of the box.',
+    stack: ['Next.js', 'TypeScript', 'Vercel'],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=70',
+    color: 'bg-foreground/[0.06]',
+    accentClass: 'text-purple-400',
+    demoUrl: '#',
   },
 ];
 
@@ -44,77 +47,84 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
     offset: ['start end', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.97, 1, 0.97]);
+
+  const isReversed = index % 2 !== 0;
 
   return (
     <motion.div
       ref={ref}
       style={{ scale }}
-      className={`relative w-full rounded-[48px] overflow-hidden ${project.color} border border-border shadow-apple-lg mb-12 flex flex-col lg:flex-row group`}
+      className={`relative w-full rounded-[48px] overflow-hidden ${project.color} border border-border shadow-apple-lg mb-12 flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} group`}
     >
       {/* Content */}
       <div className="flex-1 p-10 md:p-16 flex flex-col justify-center">
+        {/* Header row */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: isReversed ? 20 : -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex items-center gap-3 mb-6"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex items-center gap-3 mb-6 flex-wrap"
         >
-          <div className={`w-10 h-10 rounded-xl bg-background border border-border flex items-center justify-center shadow-sm ${project.accent}`}>
-            <project.icon size={20} />
-          </div>
-          <span className="text-[11px] font-black tracking-[0.2em] uppercase text-foreground/60">
+          <span className="text-[10px] font-black tracking-[0.25em] uppercase text-foreground/40 border border-border rounded-full px-4 py-1.5">
             {project.cat}
+          </span>
+          <span className="text-[10px] font-black tracking-[0.2em] uppercase px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">
+            {project.badge}
           </span>
         </motion.div>
 
         <h3 className="text-4xl md:text-5xl font-black text-foreground mb-6 leading-tight">
           {project.title}
         </h3>
-        
-        <p className="text-xl text-foreground/70 font-medium mb-10 leading-relaxed max-w-lg">
+
+        <p className="text-lg md:text-xl text-foreground/60 font-medium mb-10 leading-relaxed max-w-lg">
           {project.desc}
         </p>
 
-        {/* Stats Row */}
-        <div className="flex gap-10 mb-12">
-          {Object.entries(project.stats).map(([label, val]) => (
-            <div key={label}>
-              <div className="text-sm font-black uppercase tracking-widest text-foreground/40 mb-1">{label}</div>
-              <div className={`text-3xl font-black ${project.accent}`}>{val}</div>
-            </div>
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2 mb-12">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="px-4 py-2 rounded-xl bg-foreground/5 text-foreground/50 text-sm font-bold border border-border"
+            >
+              {tech}
+            </span>
           ))}
         </div>
 
         <a
-          href="#"
-          className="inline-flex items-center gap-3 text-lg font-bold text-foreground group-hover:text-secondary transition-colors"
+          href={project.demoUrl}
+          className="inline-flex items-center gap-3 text-base font-bold text-foreground group-hover:text-foreground/70 transition-colors self-start"
         >
-          View Case Study
-          <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary group-hover:text-white transition-all">
-            <ArrowUpRight size={18} />
+          <div className="w-11 h-11 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:border-foreground group-hover:text-background transition-all duration-300">
+            <ExternalLink size={16} />
           </div>
+          View Live Demo
         </a>
       </div>
 
       {/* Image / Mockup Area */}
-      <div className="flex-1 relative min-h-[400px] lg:min-h-0 bg-foreground/[0.02] overflow-hidden">
-        <motion.div style={{ y }} className="absolute inset-10 rounded-[32px] overflow-hidden shadow-2xl border border-border group-hover:border-secondary/30 transition-colors duration-500">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-            />
-            {/* Glass Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-         </motion.div>
-         
-         {/* Floating elements */}
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
-            <div className="absolute top-20 right-20 w-32 h-32 bg-card/80 backdrop-blur-md rounded-2xl border border-border shadow-xl rotate-12 group-hover:rotate-6 transition-transform duration-700 hidden lg:block" />
-            <div className="absolute bottom-20 left-20 w-24 h-24 bg-card/60 backdrop-blur-md rounded-full border border-border shadow-xl -rotate-12 group-hover:-rotate-3 transition-transform duration-700 hidden lg:block" />
-         </div>
+      <div className="flex-1 relative min-h-[340px] lg:min-h-0 bg-foreground/[0.02] overflow-hidden">
+        <motion.div
+          style={{ y }}
+          className="absolute inset-8 rounded-[28px] overflow-hidden shadow-2xl border border-border/60 group-hover:border-foreground/20 transition-colors duration-500"
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+          />
+          {/* Vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+        </motion.div>
+
+        {/* Floating decorative */}
+        <div className="absolute top-6 right-6 w-10 h-10 rounded-xl bg-background/80 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <ArrowUpRight size={16} className="text-foreground/60" />
+        </div>
       </div>
     </motion.div>
   );
@@ -124,40 +134,64 @@ export default function PortfolioSection() {
   return (
     <section id="portfolio" className="py-32 px-6 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24">
+
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 text-[11px] font-black uppercase tracking-widest text-foreground/40 mb-6">
-              Selected Works
+              <Layers size={12} />
+              Our Work
             </div>
             <h2 className="text-5xl md:text-7xl font-[1000] tracking-tight text-foreground mb-0">
-              Projects that <br />
-              <span className="gradient-text">move the needle.</span>
+              Built to show <br />
+              <span className="gradient-text">what's possible.</span>
             </h2>
           </div>
-          <p className="text-xl text-foreground/60 font-medium max-w-sm mb-2">
-            A small collection of our favorite builds that delivered massive ROI for our clients.
+          <p className="text-xl text-foreground/40 font-medium max-w-sm mb-2">
+            We build concept projects across industries to demonstrate the quality and craft we bring to every engagement.
           </p>
         </div>
 
-        <div className="space-y-12">
+        {/* Honest disclaimer callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 flex items-start gap-4 px-8 py-6 rounded-[24px] bg-amber-500/5 border border-amber-500/15"
+        >
+          <div className="w-2 h-2 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
+          <p className="text-base text-foreground/50 font-medium leading-relaxed">
+            <span className="font-black text-foreground/70">These are concept projects</span> — built by us to demonstrate our design and engineering capabilities across real-world use cases. We're actively taking on new clients. Yours could be next.
+          </p>
+        </motion.div>
+
+        {/* Project Cards */}
+        <div className="space-y-8">
           {projects.map((p, i) => (
             <ProjectCard key={p.title} project={p} index={i} />
           ))}
         </div>
 
+        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mt-20 text-center"
         >
+          <p className="text-foreground/40 font-medium mb-6">Want to see something built for your industry?</p>
           <a
-            href="#"
-            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl border border-border font-bold text-lg hover:bg-foreground/5 transition-all shadow-apple text-foreground"
+            href="https://wa.me/919098339887"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-primary text-background font-black text-lg shadow-apple hover:opacity-90 active:scale-95 transition-all"
           >
-            Explore Full Portfolio
+            Let's Build Yours
             <ArrowUpRight size={20} />
           </a>
         </motion.div>
+
       </div>
     </section>
   );

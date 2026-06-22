@@ -23,14 +23,17 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
   const isDark = mounted && (theme === 'dark' || resolvedTheme === 'dark');
 
   return (
-    <div className={`${sizeClasses[size]} flex items-center justify-center overflow-hidden ${className}`}>
+    <div className={`${sizeClasses[size]} flex items-center justify-center overflow-hidden bg-transparent ${className}`}>
       <img
         src="/logo.png"
         alt="BuildSkull Logo"
         className="w-full h-full object-contain"
         style={{
+          // Logo = dark skull on white bg
+          // Light mode: multiply drops white bg → dark skull shows on light navbar
+          // Dark mode: invert → light skull on black bg, then screen drops the black → light skull on dark navbar
           filter: isDark ? 'invert(1)' : 'none',
-          mixBlendMode: isDark ? 'multiply' : 'screen',
+          mixBlendMode: isDark ? 'screen' : 'multiply',
         }}
       />
     </div>
